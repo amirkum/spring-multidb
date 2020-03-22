@@ -10,8 +10,13 @@ import ru.crynet.spring.multidb.entity.Account;
 @Repository
 public class AccountDaoImpl extends BaseDaoImpl implements AccountDao {
     @Override
-    public List<Account> findAll() {
-        return getEntityManager(2018).createQuery("FROM Account", Account.class)
+    public List<Account> findAll(Integer year) {
+        return getEntityManager(year).createQuery("FROM Account", Account.class)
                 .getResultList();
+    }
+
+    @Override
+    public List<Account> findAll() {
+        return findAll(null);
     }
 }

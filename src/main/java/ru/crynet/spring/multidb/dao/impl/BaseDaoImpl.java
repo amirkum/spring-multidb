@@ -15,9 +15,12 @@ public abstract class BaseDaoImpl implements BaseDao {
     @PersistenceContext(unitName = "2019")
     private EntityManager entityManager2019;
 
-
     @Override
-    public EntityManager getEntityManager(int year) {
+    public EntityManager getEntityManager(Integer year) {
+        if (year == null) {
+            return entityManager;
+        }
+
         switch (year) {
         case 2018:
             return entityManager2018;
